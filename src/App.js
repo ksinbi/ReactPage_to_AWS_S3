@@ -1,61 +1,58 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
   const [status, setStatus] = useState('IDLE'); // IDLE, SCANNING, DONE
-  const [trendIndex, setTrendIndex] = useState(0);
-  
+  const [trend, setTrend] = useState({ title: "", desc: "" });
+
   const trends = [
-    { title: "AI Agentic Workflow", desc: "단순 응답을 넘어 스스로 계획하고 실행하는 AI 시스템" },
-    { title: "Edge Computing AI", desc: "온디바이스 환경에서 초고속으로 작동하는 로컬 AI 모델" },
-    { title: "Multimodal Search", desc: "이미지, 음성, 영상을 동시에 이해하는 차세대 검색 기술" }
+    { title: "Agentic AI", desc: "사용자의 개입 없이 스스로 목표를 세우고 실행하는 자율형 AI" },
+    { title: "Spatial Computing", desc: "디지털 콘텐츠와 물리적 세계를 완벽하게 결합하는 공간 연산 기술" },
+    { title: "Green Software", desc: "탄소 배출을 최소화하도록 설계된 지속 가능한 친환경 소프트웨어" }
   ];
 
-  const startAnalysis = () => {
+  const handleStart = () => {
     setStatus('SCANNING');
-    // 3초간 분석하는 척 시뮬레이션
     setTimeout(() => {
+      const randomTrend = trends[Math.floor(Math.random() * trends.length)];
+      setTrend(randomTrend);
       setStatus('DONE');
-      setTrendIndex(Math.floor(Math.random() * trends.length));
-    }, 3000);
+    }, 3000); // 3초간 스캔 애니메이션
   };
-
-  const reset = () => setStatus('IDLE');
 
   return (
     <div className="container">
-      {/* 배경 장식용 빛무리 */}
-      <div className="blob"></div>
-
+      <div className="background-glow"></div>
+      
       <div className={`card ${status}`}>
         {status === 'IDLE' && (
           <div className="content fade-in">
-            <div className="badge">SYSTEM READY</div>
-            <h1>AI Nexus Insights</h1>
-            <p>전 세계 실시간 기술 트렌드를 분석할 준비가 되었습니다.</p>
-            <button className="main-btn" onClick={startAnalysis}>분석 엔진 가동</button>
+            <div className="tag">SYSTEM ACTIVE</div>
+            <h1>AI Trend Scanner</h1>
+            <p>현재 가장 주목받는 기술 트렌드를 분석합니다.</p>
+            <button className="btn-primary" onClick={handleStart}>분석 시작</button>
           </div>
         )}
 
         {status === 'SCANNING' && (
           <div className="content">
-            <div className="scanner-line"></div>
-            <h2 className="scanning-text">DATA SCANNING...</h2>
-            <div className="progress-bar">
-              <div className="progress-fill"></div>
+            <div className="scanner">
+              <div className="scan-line"></div>
             </div>
-            <p className="loading-sub">실시간 소셜 및 뉴스 피드 분석 중</p>
+            <h2 className="pulse">분석 중...</h2>
+            <div className="progress-container">
+              <div className="progress-bar"></div>
+            </div>
           </div>
         )}
 
         {status === 'DONE' && (
           <div className="content slide-up">
-            <div className="badge success">ANALYSIS COMPLETE</div>
-            <h3 className="trend-label">오늘의 핵심 트렌드</h3>
-            <h1 className="trend-title">{trends[trendIndex].title}</h1>
-            <div className="divider"></div>
-            <p className="trend-desc">{trends[trendIndex].desc}</p>
-            <button className="reset-btn" onClick={reset}>다시 분석하기</button>
+            <div className="tag success">ANALYSIS COMPLETE</div>
+            <span className="label">TODAY'S PICK</span>
+            <h1 className="result-title">{trend.title}</h1>
+            <p className="result-desc">{trend.desc}</p>
+            <button className="btn-secondary" onClick={() => setStatus('IDLE')}>다시 시도</button>
           </div>
         )}
       </div>
