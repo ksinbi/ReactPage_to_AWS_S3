@@ -39,6 +39,7 @@ jobs:
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: us-east-1 # Academy 리전 (보통 us-east-1)
 
+
     # 6. S3로 배포 (빌드된 폴더만 업로드)
     - name: Deploy to S3
       run: |
