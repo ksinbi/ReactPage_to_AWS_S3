@@ -1,147 +1,46 @@
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
-
-* {
-  box-sizing: border-box;
+body {
+  margin: 0;
+  background-color: #0f172a;
+  color: white;
+  font-family: 'Inter', sans-serif;
 }
 
-body {
-  background-color: #242333;
-  color: #fff;
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  font-family: 'Lato', sans-serif;
-  margin: 0;
+  background: radial-gradient(circle at top right, #1e293b, #0f172a);
 }
 
-.movie-container {
-  margin: 20px 0;
-}
-
-.movie-container select {
-  background-color: #fff;
-  border: 0;
-  border-radius: 5px;
-  font-size: 14px;
-  margin-left: 10px;
-  padding: 5px 15px;
-  appearance: none;
-}
-
-.container {
-  perspective: 1000px;
-  margin-bottom: 30px;
-}
-
-/* 좌석 상태 아이콘 (범례) */
-.showcase {
-  background: rgba(0, 0, 0, 0.1);
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: #777;
-  list-style-type: none;
-  display: flex;
-  justify-content: space-between;
-}
-
-.showcase li {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 10px;
-}
-
-.showcase li small {
-  margin-left: 2px;
-}
-
-/* 좌석 스타일 */
-.seat {
-  background-color: #444451;
-  height: 20px; /* 좌석 크기 */
-  width: 25px; /* 좌석 크기 */
-  margin: 3px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.1s;
-}
-
-/* 마우스 올렸을 때 */
-.seat:not(.occupied):hover {
-  transform: scale(1.2);
-}
-
-/* 선택된 좌석 */
-.seat.selected {
-  background-color: #6feaf6;
-}
-
-/* 이미 팔린 좌석 */
-.seat.occupied {
-  background-color: #e74c3c;
-  cursor: not-allowed;
-}
-
-/* 스크린 (사다리꼴 모양) */
-.screen {
-  background-color: #fff;
-  height: 70px;
-  width: 100%;
-  margin: 15px 0;
-  transform: rotateX(-45deg);
-  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
-  color: #333;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  letter-spacing: 5px;
-}
-
-.theater-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  perspective: 1000px; /* 3D 효과 */
-}
-
-/* 좌석 그리드 */
-.row {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr); /* 8열 */
-  gap: 5px;
-}
-
-/* 하단 텍스트 및 버튼 */
-p.text {
-  margin: 30px 0;
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
-  line-height: 1.5;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-p.text span {
-  color: #6feaf6;
+.ai-status {
+  color: #38bdf8;
   font-weight: bold;
-  font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 
-.booking-btn {
-  background-color: #6feaf6;
-  color: #242333;
+button {
+  background: linear-gradient(90deg, #3b82f6, #2dd4bf);
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 5px;
+  padding: 12px 24px;
+  color: white;
+  border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(111, 234, 246, 0.5);
-  transition: all 0.2s;
+  font-weight: 600;
+  transition: transform 0.2s;
 }
 
-.booking-btn:hover {
-  background-color: #3dd1e0;
+button:hover {
   transform: scale(1.05);
 }
